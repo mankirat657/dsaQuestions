@@ -1,24 +1,23 @@
 class Solution {
     public int maxProduct(int[] nums) {
+        int maxPLeft = Integer.MIN_VALUE;
+        int maxPRight = Integer.MIN_VALUE;
         int prod = 1;
-        int n = nums.length;
-        int maxP = Integer.MIN_VALUE;
-        int maxP2 = Integer.MIN_VALUE;
-        for(int i = 0; i < n; i++){ // i = 0;
-           prod *= nums[i];
+        for(int i = 0; i < nums.length; i++){
+            prod *= nums[i];
 
-           maxP = Math.max(maxP,prod);
+            maxPLeft = Math.max(maxPLeft,prod);
 
-           if(prod == 0) prod = 1;
+            if(prod == 0) prod = 1;
         }
         prod = 1;
-        for(int i = n-1; i >=0; i--){ // i = 0;
-           prod *= nums[i];
+        for(int i = nums.length-1; i >= 0; i--){
+            prod *= nums[i];
 
-           maxP2 = Math.max(maxP2,prod);
+            maxPRight = Math.max(maxPRight,prod);
 
-           if(prod == 0) prod = 1;
+            if(prod == 0) prod = 1;
         }
-        return Math.max(maxP,maxP2);
+        return Math.max(maxPLeft,maxPRight);
     }
 }
